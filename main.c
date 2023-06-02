@@ -7,18 +7,14 @@
 int main(void)
 {
 	char *remaining_chr = NULL;
-	int fd = open("arquivo.txt", O_RDONLY);
+	int fd = open("/nfs/homes/brunrodr/03. GNL/GNL/tests/nl.txt", O_RDONLY);
 	if (fd < 0)
 	{
 		printf("Failed to open the file");
 		return (1);
 	}
 	remaining_chr = get_next_line(fd);
-	if (remaining_chr == NULL)
-	{
-		printf("An error occurred while reading files");
-		return (1);
-	}
+	
 	while (remaining_chr != NULL)
 	{
 		printf("Lines read: %s", remaining_chr);
