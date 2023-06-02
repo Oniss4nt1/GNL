@@ -73,10 +73,10 @@ char	*get_line(char *str)
 	if (str == NULL)
 		return (NULL);
 	p = str;
-	while (*p)
+	while (*p && *p != '\n')
 	{
 		if (*p == '\n')
-			break ;
+			p++;
 		p++;
 	}
 	line = (char *)malloc(sizeof(char) * (p - str + 1));
@@ -92,23 +92,31 @@ char	*get_line(char *str)
 	return (line - (p - str));
 }
 
-char	*get_remaining(char *line)
+static char	*get_remaining(char *str)
 {
 	char	*p;
 	char	*remaining;
+	char	*dest;
 
-	p = line;
-	while (*p != '\n' && *p != '\0')
+	p = str;
+	while (*p != '\n' && *p)
 		p++;
-	remaining = (char *)malloc(sizeof(char) * ft_strlen(p) + 1);
-	if (remaining == NULL)
+	if (*p == '\n' && *(p + 1) == '\0')
+	{
+		free(str);
 		return (NULL);
+	}
+	remaining = (char *)malloc(sizeof(char) * (ft_strlen(p) + 1));
+	if (!remaining)
+		return (NULL);
+	dest = remaining;
+	p++;
 	while (*p != '\0')
-		*remaining++ = *p++;
-	*remaining = '\0';
-	return (remaining - (p - line));
+		*dest++ = *p++;
+	*dest = '\0';
+	free(str);
+	return (remaining - (p - str));
 }
-
 
 char	*read_lines(int fd, char *current_line)
 {
@@ -135,7 +143,6 @@ char	*read_lines(int fd, char *current_line)
 	return (current_line);
 }
 
-
 char	*get_next_line(int fd)
 {
 	static char	*line;
@@ -158,6 +165,7 @@ char	*get_next_line(int fd)
 	line = get_remaining(line);
 	return (current_line);
 }
+
 
 // int main(void)
 // {
