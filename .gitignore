@@ -14,3 +14,4 @@ gnlTester
 
 #Others
 .vscode
+.nfs*
