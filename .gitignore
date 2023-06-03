@@ -1,0 +1,16 @@
+#Set
+gnlTester
+42-get_next_line
+
+#Executables
+.exe
+.a
+.out
+
+#Debug
+.dSYM
+.pdb
+.idb
+
+#Others
+.vscode

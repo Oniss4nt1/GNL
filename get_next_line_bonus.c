@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: brunrodr <brunrodr@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/01 10:18:24 by brunrodr          #+#    #+#             */
-/*   Updated: 2023/06/02 18:36:23 by brunrodr         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "get_next_line.h"
 #include <fcntl.h>
 #include <stdio.h>
@@ -112,17 +100,17 @@ char	*read_lines(int fd, char *current_line)
 
 char *get_next_line(int fd)
 {
-	static char *line;
+	static char *line[4096];
 	char *current_line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, NULL, 0))
 		return NULL;
-	line = read_lines(fd, line);
-	if (!ft_strlen(line))
+	line[fd] = read_lines(fd, line[fd]);
+	if (!ft_strlen(line[fd]))
 		return NULL;
-	current_line = get_line(line);
+	current_line = get_line(line[fd]);
 	if (!current_line)
 		return NULL;
-	line = get_remaining(line);
+	line[fd] = get_remaining(line[fd]);
 	return (current_line);
 }

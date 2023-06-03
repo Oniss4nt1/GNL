@@ -7,7 +7,7 @@
 int main(void)
 {
 	char *remaining_chr = NULL;
-	int fd = open("/nfs/homes/brunrodr/03. GNL/GNL/tests/nl.txt", O_RDONLY);
+	int fd = open("/home/bruno/Documents/42SP/get_next_line/GNL-v2/tests/41_with_no_nl", O_RDONLY);
 	if (fd < 0)
 	{
 		printf("Failed to open the file");
