@@ -20,7 +20,6 @@ static char	find_breakline(char *str)
 	return (0);
 }
 
-
 static char	*get_line(char *str)
 {
 	char	*p;
@@ -32,7 +31,7 @@ static char	*get_line(char *str)
 		p++;
 	if (*p == '\n')
 		p++;
-	line = (char *)malloc(sizeof(char) * ft_strlen(str) + 1);
+	line = (char *)malloc(sizeof(char) * (p - str) + 1);
 	if (!line)
 		return (NULL);
 	dest = line;
@@ -43,6 +42,8 @@ static char	*get_line(char *str)
 	*dest = '\0';
 	return (line);
 }
+
+
 
 static char *get_remaining(char *str)
 {
@@ -68,10 +69,9 @@ static char *get_remaining(char *str)
 	while (*str != '\0')
 		*p++ = *str++;
 	*p = '\0';
-	free(original_str); // Libera o ponteiro original
+	free(original_str);
 	return remaining;
 }
-
 
 char	*read_lines(int fd, char *current_line)
 {

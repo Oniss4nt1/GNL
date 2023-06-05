@@ -44,7 +44,7 @@ static char	*get_line(char *str)
 		p++;
 	if (*p == '\n')
 		p++;
-	line = (char *)malloc(sizeof(char) * ft_strlen(str) + 1);
+	line = (char *)malloc(sizeof(char) * (p - str) + 1);
 	if (!line)
 		return (NULL);
 	dest = line;
@@ -56,12 +56,12 @@ static char	*get_line(char *str)
 	return (line);
 }
 
-static char *get_remaining(char *str)
+static char	*get_remaining(char *str)
 {
-	char *p;
-	char *remaining;
-	char *original_str;
-	
+	char	*p;
+	char	*remaining;
+	char	*original_str;
+
 	p = str;
 	original_str = str;
 	while (*p != '\n' && *p != '\0')
@@ -69,7 +69,7 @@ static char *get_remaining(char *str)
 	if (*p == '\n' && *(p + 1) == '\0')
 	{
 		free(original_str);
-		return NULL;
+		return (NULL);
 	}
 	remaining = (char *)malloc(sizeof(char) * ft_strlen(str) + 1);
 	p = remaining;
@@ -80,10 +80,9 @@ static char *get_remaining(char *str)
 	while (*str != '\0')
 		*p++ = *str++;
 	*p = '\0';
-	free(original_str); // Libera o ponteiro original
-	return remaining;
+	free(original_str);
+	return (remaining);
 }
-
 
 char	*read_lines(int fd, char *current_line)
 {
@@ -110,19 +109,19 @@ char	*read_lines(int fd, char *current_line)
 	return (current_line);
 }
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-	static char *line;
-	char *current_line;
+	static char	*line;
+	char		*current_line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, NULL, 0))
-		return NULL;
+		return (NULL);
 	line = read_lines(fd, line);
 	if (!ft_strlen(line))
-		return NULL;
+		return (NULL);
 	current_line = get_line(line);
 	if (!current_line)
-		return NULL;
+		return (NULL);
 	line = get_remaining(line);
 	return (current_line);
 }

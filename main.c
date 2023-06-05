@@ -4,23 +4,49 @@
 #include <unistd.h>
 #include <fcntl.h>
 
-int main(void)
+int main(int argc, char *argv[])
 {
-	char *remaining_chr = NULL;
-	int fd = open("/home/bruno/Documents/42SP/get_next_line/GNL-v2/tests/41_with_no_nl", O_RDONLY);
-	if (fd < 0)
+	if (argc < 2)
+	{
+		printf("Please, enter the name file");
+		return (1);
+	}
+
+	int fd = open(argv[1], O_RDONLY);
+	if (fd <= -1)
 	{
 		printf("Failed to open the file");
 		return (1);
 	}
-	remaining_chr = get_next_line(fd);
 	
-	while (remaining_chr != NULL)
+	char *line = get_next_line(fd);
+	while (line != NULL)
 	{
-		printf("Lines read: %s", remaining_chr);
-		free(remaining_chr);
-		remaining_chr = get_next_line(fd);
+		printf("%s", line);
+		free(line);
+		line = get_next_line(fd);
 	}
 	close(fd);
-	return(0);
+	return (0);
 }
+
+// int main(void)
+// {
+// 	char *remaining_chr = NULL;
+// 	int fd = open("/home/bruno/Documents/42SP/get_next_line/GNL-v2/tests/41_with_no_nl", O_RDONLY);
+// 	if (fd < 0)
+// 	{
+// 		printf("Failed to open the file");
+// 		return (1);
+// 	}
+// 	remaining_chr = get_next_line(fd);
+	
+// 	while (remaining_chr != NULL)
+// 	{
+// 		printf("Lines read: %s", remaining_chr);
+// 		free(remaining_chr);
+// 		remaining_chr = get_next_line(fd);
+// 	}
+// 	close(fd);
+// 	return(0);
+// }

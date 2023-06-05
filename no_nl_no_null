@@ -1,0 +1,5 @@
+Em strings válidas em linguagem C, é esperado que haja um caractere nulo de terminação ('\0') ao final da sequência de caracteres. Esse caractere é utilizado para indicar o fim da string.
+
+No entanto, é importante lembrar que nem todas as sequências de caracteres em memória são necessariamente strings válidas. Se por algum motivo uma sequência de caracteres não possuir o caractere nulo de terminação no final, ela não seria considerada uma string válida em C. Nesse caso, operações que dependem do caractere nulo de terminação podem não funcionar corretamente.
+
+Por essa razão, é uma boa prática garantir que as strings estejam devidamente terminadas com o caractere nulo ('\0') para evitar comportamentos indesejados e possíveis erros.
