@@ -71,7 +71,7 @@ static char	*get_remaining(char *str)
 		free(original_str);
 		return (NULL);
 	}
-	remaining = (char *)malloc(sizeof(char) * ft_strlen(str) + 1);
+	remaining = (char *)malloc(sizeof(char) * (ft_strlen(p) + 1));
 	p = remaining;
 	while (*str != '\n' && *str != '\0')
 		str++;
