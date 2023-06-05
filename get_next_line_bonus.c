@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: brunrodr <brunrodr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/05 12:05:00 by brunrodr          #+#    #+#             */
+/*   Updated: 2023/06/05 14:16:40 by brunrodr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 #include <fcntl.h>
 #include <stdio.h>
@@ -43,35 +55,33 @@ static char	*get_line(char *str)
 	return (line);
 }
 
-
-
-static char *get_remaining(char *str)
+static char	*get_remaining(char *str)
 {
-	char *p;
-	char *remaining;
-	char *original_str;
-	
+	char	*p;
+	char	*remaining;
+	char	*save_position;
+
 	p = str;
-	original_str = str;
+	save_position = str;
 	while (*p != '\n' && *p != '\0')
 		p++;
 	if (*p == '\n' && *(p + 1) == '\0')
 	{
-		free(original_str);
-		return NULL;
+		free(str);
+		return (NULL);
 	}
-	remaining = (char *)malloc(sizeof(char) * (ft_strlen(p) + 1));
+	str = p;
+	remaining = (char *)malloc(sizeof(char) * (ft_strlen(str) + 1));
+	if (!remaining)
+		return (NULL);
 	p = remaining;
-	while (*str != '\n' && *str != '\0')
-		str++;
-	if (*str == '\n')
-		str++;
 	while (*str != '\0')
 		*p++ = *str++;
 	*p = '\0';
-	free(original_str);
-	return remaining;
+	free(save_position);
+	return (remaining);
 }
+
 
 char	*read_lines(int fd, char *current_line)
 {
@@ -81,22 +91,20 @@ char	*read_lines(int fd, char *current_line)
 	buffer = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (!buffer)
 		return (NULL);
-	while (!find_breakline(current_line))
+	read_bytes = read(fd, buffer, BUFFER_SIZE);
+	if (read_bytes <= 0)
 	{
-		read_bytes = read(fd, buffer, BUFFER_SIZE);
-		if (read_bytes <= 0)
-			break ;
-		buffer[read_bytes] = '\0';
-		current_line = ft_strjoin(current_line, buffer);
-		if (!current_line)
-		{
-			free(buffer);
-			return (NULL);
-		}
+		free(buffer);
+		return (current_line);
 	}
+	buffer[read_bytes] = '\0';
+	current_line = ft_strjoin(current_line, buffer);
 	free(buffer);
-	return (current_line);
+	if (find_breakline(current_line))
+		return (current_line);
+	return (read_lines(fd, current_line));
 }
+
 
 char *get_next_line(int fd)
 {
