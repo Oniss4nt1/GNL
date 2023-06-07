@@ -10,7 +10,7 @@
 > O projeto da GNL não é tão complicado (será se fizer com lista encadeada), porém é um projeto que exige bastante atenção e cuidado, pois é necessário entender muito bem o que está acontecendo com o código para conseguir implementar a função corretamente. Caso contrário, poderá ter vazamentos de memória (clássico do GNL) e uns erros comuns, como de compilação, erros de execução e etc. Inicialmente, minha ideia era faze-lo com lista encadeada, mas tive mais dificuldade do que imaginava, então mudei para cadeira de arrays e trabalhei a síntaxe exclusivamente com ponteiros.
 
 # :screwdriver: How to use
-> Este repósitorio conta com dois main.c diferentes, um para o mandatório, que vai testar um arquivo .txt e um voltado para o bônus, que irá testar vários arquivos .txt que irão ser passados como argumento na execução do programa.Para usa-lo, clone este repositório em sua pasta de interesse, acesse a pasta mandatório ou bônus e execute o comando abaixo:
+> Este repósitorio conta com dois main.c diferentes, um para o mandatório, que vai testar um arquivo .txt e um voltado para o bônus, que irá testar vários arquivos .txt que irão ser passados como argumento na execução do programa. Para usa-lo, clone este repositório em sua pasta de interesse, acesse a pasta mandatório ou bônus e execute o comando abaixo:
 
 ```bash
 gcc -Wall -Wextra -Werror -D BUFFER_SIZE=<seu_valor> get_next_line.c get_next_line_utils.c main.c && ./a.out
@@ -25,6 +25,3 @@ gcc -Wall -Wextra -Werror -D BUFFER_SIZE=<seu_valor> get_next_line.c get_next_li
 
 # :construction: Development
 > Meu projeto foi desenvolvido com cadeia de arrays, pois tive dificuldade em implementar com lista encadeada. Além de fazer com cadeia de arrays, quis fazer exclusivamente com ponteiros, para treinar a síntaxe e entender melhor como funciona a manipulação de ponteiros em C. Foi bem desafiador, principalmente para evitar que vazamentos ocorressem por perda de referência.
-
-# :Hug: Acknowledgment
-> Gostaria de agradecer a OpenAI pelo Chat GPT-3, que me ajudou a escrever este README.md e a 42sp pela oportunidade de fazer este projeto.
