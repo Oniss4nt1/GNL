@@ -6,7 +6,7 @@
 /*   By: brunrodr <brunrodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 10:18:24 by brunrodr          #+#    #+#             */
-/*   Updated: 2023/06/07 11:21:22 by brunrodr         ###   ########.fr       */
+/*   Updated: 2023/06/07 12:14:16 by brunrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*get_next_line(int fd)
 
 /*
 ** This is a recursive function that reads the file line by line  
-** according to the BUFFER_SIZE and allocates memory for the buffers. 
+** according to the BUFFER_SIZE and allocates memory for the buffers.
 ** It uses the function ft_strjoin to join two memory blocks.
 ** One of the mallocs is the buffer, which is the buffer that will be read.
 ** The other malloc is the current_line, which is the line that will be returned.
