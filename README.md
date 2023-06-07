@@ -8,7 +8,7 @@
 > A pontuação máxima que um projeto pode atingir na 42sp, considerando apenas a parte mandatório, é de 100 pontos. Caso seja realizado o bônus do projeto, a pontuação pode ser de 101 até 125. 
 
 
-# :clipboard: About
+# :information_source: About
 > O projeto da GNL não é tão complicado (será se fizer com lista encadeada, rs), porém é um projeto que exige bastante atenção e cuidado, pois é necessário entender muito bem o que está acontecendo com o código para conseguir implementar a função corretamente. Caso contrário, poderá ter vazamentos de memória (clássico do GNL) e uns erros comuns, como de compilação, erros de execução e etc. Inicialmente, minha ideia era faze-lo com lista encadeada, mas tive mais dificuldade do que imaginava, então mudei para cadeira de arrays e trabalhei a síntaxe exclusivamente com ponteiros.
 
 
