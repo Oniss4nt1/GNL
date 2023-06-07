@@ -1,17 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brunrodr <brunrodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 12:11:00 by brunrodr          #+#    #+#             */
-/*   Updated: 2023/06/05 12:11:02 by brunrodr         ###   ########.fr       */
+/*   Created: 2023/06/06 11:53:25 by brunrodr          #+#    #+#             */
+/*   Updated: 2023/06/07 11:09:14 by brunrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+** This utility functions to the get_next_line function.
+** ft_strlen returns the lenght of a string.
+** ft_strjoin joins two strings.
+*/
+
 #include "get_next_line.h"
-#include <strings.h>
 
 size_t	ft_strlen(char *s)
 {
@@ -28,25 +33,6 @@ size_t	ft_strlen(char *s)
 	return (lenght);
 }
 
-char	*ft_strdup(const char *s)
-{
-	char	*str;
-	char	*p;
-	int		len;
-
-	len = 0;
-	while (s[len] != '\0')
-		len++;
-	str = malloc(len + 1);
-	if (str == NULL)
-		return (NULL);
-	p = str;
-	while (*s != '\0')
-		*p++ = *s++;
-	*p = '\0';
-	return (str);
-}
-
 char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*str;
@@ -54,8 +40,11 @@ char	*ft_strjoin(char *s1, char *s2)
 	char	*original_s1;
 	size_t	len_string;
 
-	if (s1 == NULL)
-		s1 = ft_strdup("");
+	if (!s1)
+	{
+		s1 = (char *)malloc(1 * sizeof(char));
+		s1[0] = '\0';
+	}
 	len_string = ft_strlen(s1) + ft_strlen(s2) + 1;
 	str = (char *)malloc(len_string);
 	if (str == NULL)
