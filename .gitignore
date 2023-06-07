@@ -5,7 +5,7 @@ gnlTester
 #Executables
 .exe
 .a
-.out
+a.out
 
 #Debug
 .dSYM
