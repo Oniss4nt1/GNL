@@ -26,5 +26,5 @@ gcc -Wall -Wextra -Werror -D BUFFER_SIZE=<seu_valor> get_next_line.c get_next_li
 # :construction: Development
 > Meu projeto foi desenvolvido com cadeia de arrays, pois tive dificuldade em implementar com lista encadeada. Além de fazer com cadeia de arrays, quis fazer exclusivamente com ponteiros, para treinar a síntaxe e entender melhor como funciona a manipulação de ponteiros em C. Foi bem desafiador, principalmente para evitar que vazamentos ocorressem por perda de referência.
 
-# :Hugs: Acknowledgment
+# :Hug: Acknowledgment
 > Gostaria de agradecer a OpenAI pelo Chat GPT-3, que me ajudou a escrever este README.md e a 42sp pela oportunidade de fazer este projeto.
