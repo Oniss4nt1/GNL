@@ -30,8 +30,3 @@ int main(int argc, char *argv[])
 	return (0);
 }
 
-/*
-** This is the main file for the get_next_line_bonus function.
-*/
-
-
