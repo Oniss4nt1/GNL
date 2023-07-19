@@ -6,7 +6,7 @@
 /*   By: brunrodr <brunrodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 10:18:24 by brunrodr          #+#    #+#             */
-/*   Updated: 2023/06/07 12:14:16 by brunrodr         ###   ########.fr       */
+/*   Updated: 2023/07/19 18:55:19 by brunrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,9 @@ char	*get_next_line(int fd)
 	static char	*line;
 	char		*current_line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, NULL, 0))
+	if (fd < 0 && BUFFER_SIZE <= 0)
 		return (NULL);
+		
 	line = read_lines(fd, line);
 	if (!ft_strlen(line))
 		return (NULL);
@@ -60,24 +61,25 @@ char	*get_next_line(int fd)
 char	*read_lines(int fd, char *current_line)
 {
 	char	*buffer;
-	ssize_t	read_bytes;
-
-	buffer = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
+	int		bytes_read;
+	
+	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (NULL);
-	read_bytes = read(fd, buffer, BUFFER_SIZE);
-	if (read_bytes <= 0)
+	while (!find_breakline(current_line))
 	{
-		free(buffer);
-		return (current_line);
+		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		if (bytes_read <= 0)
+			break ;
+		buffer[bytes_read] = '\0';
+		current_line = ft_strjoin(current_line, buffer);
+		if (!current_line)
+			return (NULL);
 	}
-	buffer[read_bytes] = '\0';
-	current_line = ft_strjoin(current_line, buffer);
 	free(buffer);
-	if (find_breakline(current_line))
-		return (current_line);
-	return (read_lines(fd, current_line));
+	return (current_line);
 }
+
 
 /*
 ** This function checks if the string has a breakline.
